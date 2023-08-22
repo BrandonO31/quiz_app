@@ -10,13 +10,13 @@ const Home = () =>  (
         <Helmet><title>Quiz App - Home</title></Helmet>
         <div id="home">
             <section>
-                <div>
-                    <span className="mdi mdi-book-open-variant mdi-48px"></span>
+                <div style={{textAlign: 'center' }}>
+                    <span className="mdi mdi-book-open-variant  book"></span>
                 </div>
-                <h1>Quiz App</h1>
+                <h1>Quizás Quizzes</h1>
                 <div className="play-button-container">
                     <ul>
-                        <li><Link to="/play/instructions">Play</Link></li>
+                        <li><Link className="play-button" to="/play/instructions">Play</Link></li>
                     </ul>
                 </div>
                 <div className="desc-container">

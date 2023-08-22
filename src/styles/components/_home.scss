@@ -1,0 +1,34 @@
+#home {
+
+    background-image: url('../../assets/img/backgroundflags2.jpg');
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    justify-content: space-around;
+
+    height: 100vh;
+    width: 100vh;
+
+    section {
+        background-color: rgba(0,0,0,0.7);
+        padding-left: md;
+        padding-right: md ;
+        height: 80%;
+        width: 35%;
+    }
+
+    .book {
+        font-size: 8rem;
+        color: goldenrod;
+        text-align: center;
+    }
+    h1 {
+        text-align: center;
+        color: $off-white;
+
+    }
+    a.play-button {
+        background-color: $green;
+    }
+}
