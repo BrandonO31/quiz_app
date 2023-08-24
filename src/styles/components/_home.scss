@@ -6,16 +6,18 @@
 
     display: flex;
     justify-content: space-around;
+   
 
     height: 100vh;
-    width: 100vh;
+    width: 200vh;
 
     section {
-        background-color: rgba(0,0,0,0.7);
-        padding-left: md;
-        padding-right: md ;
+        background-color: rgba(0,0,0,0.6);
+        padding-left: $md;
+        padding-right: $md;
         height: 80%;
         width: 35%;
+        border-radius: 25px;
     }
 
     .book {
@@ -26,9 +28,42 @@
     h1 {
         text-align: center;
         color: $off-white;
+        margin-bottom: 35%;
+        
 
     }
+    
     a.play-button {
+        display: block;
+        border-radius: $button-radius;
         background-color: $green;
+        color: #fff;
+        cursor: pointer;
+        padding: $normal;
+        text-decoration: none;
+        transition: 0.3s linear all;
+        text-align: center;
+        
+        
+       
+
+        
     }
+
+    a.play-button:hover {
+        background-color: darken($green, 10%);
+    }
+
+
+    .desc-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 30px;
+        padding-top: 30px;
+        
+    }
+    
 }

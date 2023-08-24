@@ -16,11 +16,12 @@ const Home = () =>  (
                 <h1>Quizás Quizzes</h1>
                 <div className="play-button-container">
                     <ul>
-                        <li><Link className="play-button" to="/play/instructions">Play</Link></li>
+                        <li style={{ listStyle: 'none' }}><Link className="play-button" to="/play/instructions">Play</Link></li>
                     </ul>
                 </div>
+                {/* Possible Login/Register buttons go here */}
                 <div className="desc-container">
-                    <p>This is where the instructions will be written</p>
+                    <p>This will be a short description about the quiz. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
                 </div>
                 
                     
