@@ -1,0 +1,47 @@
+#instructions {
+   
+    
+    display: flex;
+    justify-content: space-around;
+
+   
+
+    section {
+       display: block;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: $md;
+        margin-bottom: 5%;
+    }
+
+    .instructions-list {
+        
+    }
+
+    .instructions-list li {
+        margin: $sm;
+    }
+// this is the image
+    .quiz-template  {
+        
+    }
+
+    .quiz-start-button {
+        display: block;
+        border-radius: $button-radius;
+        background-color: $green;
+        color: #fff;
+        cursor: pointer;
+        padding: $normal;
+        text-decoration: none;
+        transition: 0.3s linear all;
+        text-align: center;
+    }
+
+    .quiz-start-button:hover {
+        background-color: darken($green, 10%);
+    }
+    
+}
