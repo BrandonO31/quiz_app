@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
+    font-family: $outfit, sans-serif;
 
     
       .quiz-container {
@@ -30,6 +30,8 @@
 
   .answer-choices {
     
+    display: block;
+
   }
   
     
@@ -44,12 +46,32 @@
     }
     
     .answer-choices li:hover {
-      background-color: #f5f5f5;
+      background-color: #e0e0e0;;
     }
     
    
     .selected {
       background-color: #e0e0e0;
+    }
+    .submit-button-container {
+     
+      display: flex;
+      justify-content: center;
+      margin: 15px;
+    }
+
+    .submit-button {
+      
+        
+        border-radius: 3px;
+        background-color: lighten(black, 20%);
+        color: white;
+        cursor: pointer;
+        padding: $xs;
+        text-decoration: none;
+        text-align: center;
+        margin-right: 10px;
+
     }
     
     
