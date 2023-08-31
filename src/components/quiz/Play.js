@@ -10,18 +10,40 @@ const Play = () => {
 
     const [quizData, setQuizData] = useState([]);
 
+    const [currentQuestion , setCurrentQuestion] = useState(0);
+
+    const [score , setScore] = useState(0);
+
     const handleAnswerClick = (choiceIndex) => {
         setSelectedChoice(choiceIndex);
+        
+    }
+
+    const nextQuestion = () => {
+        if (selectedChoice !== null) {
+            const isCorrect = quizData[currentQuestion].correct === selectedChoice;
+            if (isCorrect) {
+                setScore(score + 1);
+            }
+        }
+
+        const nextQuestionIndex = currentQuestion + 1;
+        if (nextQuestionIndex < quizData.length) { //if there's questions remaining
+            setCurrentQuestion(nextQuestionIndex);
+            setSelectedChoice(null); // needed in order to reset the choice currently selected
+        }
+        else {
+            // code here will end the quiz by bringing up a results page
+        }
     }
 
     //Trivia questions
 
     useEffect(() => {
-        // Fetch data and set it to the quizData state
         fetchData().then((response) => {
-            console.log("Fetched data:", response); // Check the fetched data
+            console.log("API Data:", response); 
             if (response && response.length > 0) {
-                setQuizData(response.slice(0, 1));
+                setQuizData(response.slice(0, 4)); // consider adding variables within the slice method to allow user to choose # of q's
             }
         });
     }, []);
@@ -47,18 +69,44 @@ const Play = () => {
                 <div className="answer-choices">
                     <ul>
                     {quizData.map((item, index) => (
+                        <div>
                   <li
                     className={selectedChoice === index ? 'selected' : ''}
                     onClick={() => handleAnswerClick(index)}
                   >
-                    {item.answer}
+                    {item.A}
                   </li>
+                  <li
+                  className={selectedChoice === index ? 'selected' : ''}
+                  onClick={() => handleAnswerClick(index)}
+                >
+                  {item.B}
+                </li>
+                <li
+                    className={selectedChoice === index ? 'selected' : ''}
+                    onClick={() => handleAnswerClick(index)}
+                  >
+                    {item.C}
+                  </li>
+                  <li
+                    className={selectedChoice === index ? 'selected' : ''}
+                    onClick={() => handleAnswerClick(index)}
+                  >
+                    {item.D}
+                  </li>
+                </div>
                 ))}
                     </ul>
                 </div>
                 </div>
                 <div className="submit-button-container">
-                <li style={{ listStyle: 'none' }}><Link className="submit-button" to="/play/next">Submit</Link></li>
+                    <button
+                    className="submit-button"
+                    onClick={nextQuestion}
+                    disabled={selectedChoice === null}
+                    >
+                    Next Question
+                    </button>
                 </div>
             </section>
         </div>
