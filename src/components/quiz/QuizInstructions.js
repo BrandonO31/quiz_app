@@ -13,9 +13,9 @@ const QuizInstructions = () => (
             <h1>Please read the instructions before continuing</h1>
             <div className="instructions-list">
                 <ul>
-                    <li>Look at the image presented in the question</li>
-                    <li>Select the answer choice you believe matches the image</li>
-                    <li>If your choice is correct, then you will move on</li>
+                    <li>Read the question carefully</li>
+                    <li>Select the answer choice you believe is correct</li>
+                    <li>If your choice is correct, then you will move on to the next question</li>
                     <li>If your choice is incorrect, you will be able to guess again</li>
 
 
