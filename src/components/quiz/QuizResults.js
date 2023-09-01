@@ -10,11 +10,12 @@ const QuizResults = () => {
         <Helmet>
           <title>Quiz Results</title>
         </Helmet>
-        <div>
+        <div id = 'results-container'>
           <h1>Quiz Results</h1>
-          <p>Your Score: {score}</p>
-          {/* Display other result-related information */}
-          <Link to="/">Go back to Home</Link>
+          <p id = 'score'>Your Score: {score}</p>
+          
+          <div className = "home-button"> <Link to="/">Go back to Home</Link> </div>
+       
         </div>
       </Fragment>
     );
