@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import quizImg from '../../assets/img/backgroundflags.jpg';
 import { fetchData} from './api';
+import { translateText } from './api';
 
 let score = 0;
 
@@ -17,6 +18,10 @@ const Play = () => {
     let [currentQuizItem , setCurrentQuestion] = useState(0);
 
     let [quizOver , setQuizOver] = useState(false);
+
+    let [translatedQuestion, setTranslatedQuestion] = useState(null);
+
+    let [translatedChoices, setTranslatedChoices] = useState(null);
 
     const handleAnswerClick = (choiceIndex) => {
         setSelectedChoice(choiceIndex);
@@ -40,7 +45,7 @@ const Play = () => {
           setSelectedChoice(null); // needed to reset the selected choice
         } else {
           // code here will end the quiz by bringing up a results page
-          if (++currentQuizItem >= quizData.length) {
+          if (currentQuizItem + 1 >= quizData.length) {
               setQuizOver(true);
 
           }
@@ -52,19 +57,63 @@ const Play = () => {
     //Trivia questions
 
     useEffect(() => {
+
+      
         fetchData().then((response) => {
             
             if (response && response.length > 0) {
                 setQuizData(response.slice(0, 3)); // consider adding variables within the slice method to allow user to choose # of q's
-            }
+          
+                
+            
+        // Question translation
+        if ( (quizData.length > 0)) {
+          translateText(quizData[currentQuizItem].question)
+          .then((translatedText) => {
+            if (typeof trans_response !== 'undefined' ) {
+              setTranslatedQuestion(translatedText);
+              
+              
+            } 
+          })
+          .catch((error) => {
+            console.error(error);
+            setTranslatedQuestion('Translation error');
+          });
+         } 
+
+       }
         });
-    }, []);
+
+        // Answer Choice translation
+
+        // let answerChoices = [quizData[currentQuizItem].A , quizData[currentQuizItem].B , quizData[currentQuizItem].C , quizData[currentQuizItem].D];
+        // let translations = [];
+        // answerChoices.forEach((choice) => {
+        //   translateText(quizData[currentQuizItem][choice])
+        //     .then((translatedChoice) => {
+        //       translations.push({ choice, translatedChoice });
+        //       if (translations.length === answerChoices.length) {
+        //         setTranslatedChoices(translations);
+        //       }
+        //     })
+        //     .catch((error) => {
+        //       console.error(error);
+        //     });
+        // });
+       
+      }, []);
 
 
 
+    //Debugging
+
+    //**Note: For question and answer choice translations, it might be necessary to include if (quizData.length > 0) in order to ensure that all processes are carried out only once the quizData is fetched */
     console.log("API Data: ", quizData); 
-    if (quizData.length > 0) console.log("Answer: " , quizData[currentQuizItem].answer);
    
+
+   // End of Debugging
+
     return (
     <Fragment>
         <Helmet><title>Quiz in progress ...</title></Helmet>
