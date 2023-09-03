@@ -102,7 +102,7 @@ const Play = () => {
             });
         });
       }
-    }, [currentQuizItem]);
+    }, []);
 
 
 
@@ -111,7 +111,7 @@ const Play = () => {
     //**Note: For question and answer choice translations, it might be necessary to include if (quizData.length > 0) in order to ensure that all processes are carried out only once the quizData is fetched */
     console.log("API Data: ", quizData); 
     if (typeof trans_response !== 'undefined') console.log("Translated Question: " , translatedQuestion);
-
+   if (typeof trans_response !== 'undefined') console.log("Translated Choices: "  , translatedChoices);
    // End of Debugging
 
     return (
@@ -130,24 +130,24 @@ const Play = () => {
                     // this conditional statement is needed to ensure that quizData contains something before being used
 
                 <div className="question-container">
-                  <p>{quizData[currentQuizItem].question}</p>
+                  <p>{translatedQuestion}</p>
                 </div>
                   )}
 
-                <div className="answer-choices">
-                    {quizData.length > 0 && (
+            <div className="answer-choices">
+              {quizData.length > 0 && (
                 <ul>
-                <li className={selectedChoice === 'A' ? 'selected' : ''}
-                onClick={() => handleAnswerClick('A')}>A: { quizData[currentQuizItem].A}</li>
-                <li className={selectedChoice === 'B' ? 'selected' : ''}
-                onClick={() => handleAnswerClick('B')}>B: {quizData[currentQuizItem].B}</li>
-                <li className={selectedChoice === 'C' ? 'selected' : ''}
-                onClick={() => handleAnswerClick('C')}>C: {quizData[currentQuizItem].C}</li>
-                <li className={selectedChoice === 'D' ? 'selected' : ''}
-                onClick={() => handleAnswerClick('D')}>D: {quizData[currentQuizItem].D}</li>
-                 </ul>
-                 )}
-                </div>
+                  <li className={selectedChoice === 'A' ? 'selected' : ''}
+                    onClick={() => handleAnswerClick('A')}>A: {translatedChoices[0]?.translatedText}</li>
+                  <li className={selectedChoice === 'B' ? 'selected' : ''}
+                    onClick={() => handleAnswerClick('B')}>B: {translatedChoices[1]?.translatedText}</li>
+                  <li className={selectedChoice === 'C' ? 'selected' : ''}
+                    onClick={() => handleAnswerClick('C')}>C: {translatedChoices[2]?.translatedText}</li>
+                  <li className={selectedChoice === 'D' ? 'selected' : ''}
+                    onClick={() => handleAnswerClick('D')}>D: {translatedChoices[3]?.translatedText}</li>
+                </ul>
+              )}
+            </div>
 
                 </div>
 
