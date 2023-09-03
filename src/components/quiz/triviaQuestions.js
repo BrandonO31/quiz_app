@@ -1,4 +1,4 @@
-[
+const response = [
     {
       "question": "A flashing red traffic light signifies that a driver should do what?",
       "A": "stop",
@@ -4375,4 +4375,6 @@
       "D": "baby",
       "answer": "C"
     }
-  ]
+  ];
+
+  export default response;

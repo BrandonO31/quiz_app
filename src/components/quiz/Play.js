@@ -2,10 +2,12 @@ import React , {Fragment , useState , useEffect} from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import quizImg from '../../assets/img/backgroundflags.jpg';
-import { fetchData} from './api';
 import { translateText } from './api';
+import response from './triviaQuestions';
 
 let score = 0;
+
+console.log(response);
 
 const Play = () => {
 
@@ -21,7 +23,7 @@ const Play = () => {
 
     let [translatedQuestion, setTranslatedQuestion] = useState(null);
 
-    let [translatedChoices, setTranslatedChoices] = useState(null);
+    let [translatedChoices, setTranslatedChoices] = useState([]);
 
     const handleAnswerClick = (choiceIndex) => {
         setSelectedChoice(choiceIndex);
@@ -57,53 +59,50 @@ const Play = () => {
     //Trivia questions
 
     useEffect(() => {
-
-      
-        fetchData().then((response) => {
-            
-            if (response && response.length > 0) {
-                setQuizData(response.slice(0, 3)); // consider adding variables within the slice method to allow user to choose # of q's
-          
-                
-            
-        // Question translation
-        if ( (quizData.length > 0)) {
-          translateText(quizData[currentQuizItem].question)
+     
+      const fetchedData = response.slice(0, 3);
+    
+    
+      setQuizData(fetchedData);
+    
+      // Question translation
+      if (fetchedData.length > 0) {
+        translateText(fetchedData[currentQuizItem].question)
           .then((trans_response) => {
-            console.log("Translation is success, next is setTranslatedQuestion");
+            console.log("Translation is successful, next is setTranslatedQuestion");
             if (trans_response.status === "success") {
               setTranslatedQuestion(trans_response.data.translatedText);
               console.log(translatedQuestion);
-              
-            } 
+            }
           })
           .catch((error) => {
             console.error(error);
             setTranslatedQuestion('Translation error');
           });
-         } 
-
-       }
+      }
+    
+      // Answer Choice translation
+      if (fetchedData.length > 0) {
+        let answerChoices = ['A', 'B', 'C', 'D']; 
+        let translations = [];
+    
+        answerChoices.forEach((choice) => {
+          translateText(fetchedData[currentQuizItem][choice])
+            .then((trans_response) => {
+              if (trans_response.status === "success") {
+                const translatedText = trans_response.data.translatedText;
+                translations.push({ choice, translatedText });
+                if (translations.length === answerChoices.length) {
+                  setTranslatedChoices(translations);
+                }
+              }
+            })
+            .catch((error) => {
+              console.error(error);
+            });
         });
-
-        // Answer Choice translation
-
-        // let answerChoices = [quizData[currentQuizItem].A , quizData[currentQuizItem].B , quizData[currentQuizItem].C , quizData[currentQuizItem].D];
-        // let translations = [];
-        // answerChoices.forEach((choice) => {
-        //   translateText(quizData[currentQuizItem][choice])
-        //     .then((translatedChoice) => {
-        //       translations.push({ choice, translatedChoice });
-        //       if (translations.length === answerChoices.length) {
-        //         setTranslatedChoices(translations);
-        //       }
-        //     })
-        //     .catch((error) => {
-        //       console.error(error);
-        //     });
-        // });
-       
-      }, []);
+      }
+    }, [currentQuizItem]);
 
 
 
