@@ -21,7 +21,16 @@ const Home = () =>  (
                 </div>
                 {/* Possible Login/Register buttons go here */}
                 <div className="desc-container">
-                    <p>This will be a short description about the quiz. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                    <p> Welcome to Quizas Quizzes - Your Bilingual Quiz Adventure! </p>
+
+                   <p> Expand your Trivia and Espanol knowledge with Quizas Quizzes, the quiz app designed to challenge your mind and expand your linguistic horizons. </p>
+                    <ul>
+                        <li>🌟 Bilingual Experience: Immerse yourself in questions presented in Spanish while having the flexibility to translate them back and forth to English. It's not just a quiz; it's a language-learning journey.</li>
+                        <li>🧠 Educational & Entertaining: Test your knowledge and have fun at the same time. Whether you're a language enthusiast or just looking for a stimulating quiz, we've got you covered.</li>
+                        <li>🏆 Varied Topics: Enjoy a wide array of trivia topics.</li>
+                        <li>🕑 Quick & Easy: Access quizzes anytime, anywhere, right from our homepage. No need to search; it's all at your fingertips.</li>
+                    </ul>
+                   
                 </div>
                 
                     

@@ -60,7 +60,7 @@ const Play = () => {
 
     useEffect(() => {
      
-      const fetchedData = response.slice(0, 3);
+      const fetchedData = response.slice(0, 1);
     
     
       setQuizData(fetchedData);
@@ -69,7 +69,7 @@ const Play = () => {
       if (fetchedData.length > 0) {
         translateText(fetchedData[currentQuizItem].question)
           .then((trans_response) => {
-            console.log("Translation is successful, next is setTranslatedQuestion");
+            
             if (trans_response.status === "success") {
               setTranslatedQuestion(trans_response.data.translatedText);
               console.log(translatedQuestion);
@@ -153,15 +153,8 @@ const Play = () => {
 
                 <div className="submit-button-container">
                  {quizOver ? ( // checks if quiz is over in order to change buttons functionality
-                  <Link to="/play/results">See Results</Link>
-                  ) : (
-                <button
-                 className="submit-button"
-                 onClick={nextQuestion}
-                  disabled={selectedChoice === null}
-                >
-                 Next Question
-                </button>
+                  <Link to="/play/results">See Results</Link> 
+                  ) : ( <button className="submit-button"onClick={nextQuestion} disabled={selectedChoice === null}>Next Question</button>
                )}
                 </div>
             </section>
