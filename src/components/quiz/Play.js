@@ -69,10 +69,11 @@ const Play = () => {
         // Question translation
         if ( (quizData.length > 0)) {
           translateText(quizData[currentQuizItem].question)
-          .then((translatedText) => {
-            if (typeof trans_response !== 'undefined' ) {
-              setTranslatedQuestion(translatedText);
-              
+          .then((trans_response) => {
+            console.log("Translation is success, next is setTranslatedQuestion");
+            if (trans_response.status === "success") {
+              setTranslatedQuestion(trans_response.data.translatedText);
+              console.log(translatedQuestion);
               
             } 
           })
@@ -110,7 +111,7 @@ const Play = () => {
 
     //**Note: For question and answer choice translations, it might be necessary to include if (quizData.length > 0) in order to ensure that all processes are carried out only once the quizData is fetched */
     console.log("API Data: ", quizData); 
-   
+    if (typeof trans_response !== 'undefined') console.log("Translated Question: " , translatedQuestion);
 
    // End of Debugging
 
