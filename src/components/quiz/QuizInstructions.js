@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import quizTemplateImg from '../../assets/img/quiztemplate.jpg'
+import quizTemplateImg from '../../assets/img/quiz_english.png'
+import languageToggleImage from '../../assets/img/language_toggle.png'
 
 
 const QuizInstructions = () => (
@@ -26,7 +27,13 @@ const QuizInstructions = () => (
             
 
             <img className ="quiz-template"src={quizTemplateImg} alt="Quiz Template Image" />
-            
+            <div className="instructions-list">
+                <ul>
+                    <li>You will have the ability to translate between English and Spanish for each question and it's answer choices by clicking the corresponding button</li>
+                </ul>
+            </div>
+            <img className ="language-toggle-image"src={languageToggleImage} alt="Quiz Template Image" />
+
             <li style={{ listStyle: 'none' }}><Link className="quiz-start-button" to="/play/quiz">Start the Quiz!</Link></li>
             </section>
         </div>

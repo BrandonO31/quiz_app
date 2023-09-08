@@ -23,7 +23,7 @@ const Home = () =>  (
                 <div className="desc-container">
                     <p> Welcome to Quizas Quizzes - Your Bilingual Quiz Adventure! </p>
 
-                   <p> Expand your Trivia and Espanol knowledge with Quizas Quizzes, the quiz app designed to challenge your mind and expand your linguistic horizons. </p>
+                   <p> Expand your Trivia and Espanol knowledge with a quiz app designed to improve your general knowledge. </p>
                     <ul>
                         <li>🌟 Bilingual Experience: Immerse yourself in questions presented in Spanish while having the flexibility to translate them back and forth to English. It's not just a quiz; it's a language-learning journey.</li>
                         <li>🧠 Educational & Entertaining: Test your knowledge and have fun at the same time. Whether you're a language enthusiast or just looking for a stimulating quiz, we've got you covered.</li>

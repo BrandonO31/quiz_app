@@ -127,8 +127,6 @@ const Play = () => {
 
 
     //Debugging
-
-    //**Note: For question and answer choice translations, it might be necessary to include if (quizData.length > 0) in order to ensure that all processes are carried out only once the quizData is fetched */
     console.log("API Data: ", quizData); 
     if (typeof trans_response !== 'undefined') console.log("Translated Question: " , translatedQuestion);
    if (typeof trans_response !== 'undefined') console.log("Translated Choices: "  , translatedChoices);
@@ -194,7 +192,7 @@ const Play = () => {
                   </div>
                     <div>
                   <button className = "choice-toggle-button" onClick={handleChoiceLanguageToggle}>
-                  Change Choice Language</button>
+                  Change Answer Language</button>
                   </div>
                 </div>
 
