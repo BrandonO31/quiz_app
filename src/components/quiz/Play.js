@@ -25,6 +25,8 @@ const Play = () => {
 
     let [translatedChoices, setTranslatedChoices] = useState([]);
 
+    
+
     const handleAnswerClick = (choiceIndex) => {
         setSelectedChoice(choiceIndex);
         
@@ -160,7 +162,15 @@ const Play = () => {
 
                 <div className = "language-toggle-button-container">
                   <button className = "language-toggle-button">
+
+
                     
+                  {/* English Question: quizData[currentQuizItem].question
+                      English Choices: quizData[currentQuizItem].A
+                      Spanish Question: translatedQuestion
+                      Spanish Choices: translatedChoices[0]?.translatedText
+                       */}
+
                   </button>
 
                 </div>
