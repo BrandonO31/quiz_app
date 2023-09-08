@@ -23,13 +23,21 @@
     .instructions-list li {
         margin: $sm;
     }
-// this is the image
-    .quiz-template {
-        width: 70%; 
-        height: 50%; 
-        border: 2px solid #ccc;
-        margin: 15px auto;
 
+    .quiz-template { // this is the image
+        
+      
+        border: 2px solid #ccc;
+        margin: 5px auto;
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        width: 30w; /* 50% of the viewport width */
+        height: 50vh;
+     }
+
+     .language-toggle-image {
+        margin: 5px auto;
         display: flex; 
         align-items: center; 
         justify-content: center;
