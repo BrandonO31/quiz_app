@@ -157,6 +157,13 @@ const Play = () => {
                   ) : ( <button className="submit-button"onClick={nextQuestion} disabled={selectedChoice === null}>Next Question</button>
                )}
                 </div>
+
+                <div className = "language-toggle-button-container">
+                  <button className = "language-toggle-button">
+                    
+                  </button>
+
+                </div>
             </section>
         </div>
     </Fragment>

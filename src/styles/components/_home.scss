@@ -9,7 +9,8 @@
    
 
     height: 100vh;
-    width: 200vh;
+    width: 219vh;
+    
 
     
 
@@ -41,7 +42,7 @@
         background-color: $green;
         color: #fff;
         cursor: pointer;
-        padding: $normal;
+        padding: $sm;
         text-decoration: none;
         transition: 0.3s linear all;
         text-align: center;
@@ -60,14 +61,17 @@
     .desc-container {
         width: 100%;
         display: flex;
+        flex-direction: column;
         justify-content: space-around;
         text-align: left;
         color: #fff;
         cursor: pointer;
         border-radius: 30px;
         padding-top: 30px;
+        font-size: $xs;
 
         p {
+            
             margin-bottom: 10px;
           }
         

@@ -24,9 +24,16 @@
         margin: $sm;
     }
 // this is the image
-    .quiz-template  {
-        
-    }
+    .quiz-template {
+        width: 70%; 
+        height: 50%; 
+        border: 2px solid #ccc;
+        margin: 15px auto;
+
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+     }
 
     .quiz-start-button {
         display: block;
@@ -34,7 +41,7 @@
         background-color: $green;
         color: #fff;
         cursor: pointer;
-        padding: $normal;
+        padding: $sm;
         text-decoration: none;
         transition: 0.3s linear all;
         text-align: center;
