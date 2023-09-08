@@ -25,11 +25,29 @@ const Play = () => {
 
     let [translatedChoices, setTranslatedChoices] = useState([]);
 
+    const [questionLanguageToggle, setQuestionLanguageToggle] = useState(false);
+    //default lang: English/false
+
+    const [choiceLanguageToggle, setChoiceLanguageToggle] = useState(false);
+
     
 
     const handleAnswerClick = (choiceIndex) => {
         setSelectedChoice(choiceIndex);
         
+    }
+
+    const handleQuestionLanguageToggle = () => {
+
+      if (questionLanguageToggle === false) setQuestionLanguageToggle(true);
+      else setQuestionLanguageToggle(false);
+      
+    }
+
+    const handleChoiceLanguageToggle = () => {
+
+      if (choiceLanguageToggle === false) setChoiceLanguageToggle(true);
+      else setChoiceLanguageToggle(false);
     }
 
     const nextQuestion = () => {
@@ -124,7 +142,7 @@ const Play = () => {
                 <div style={{ textAlign: 'center' }}>
                     
                 </div>
-                <h1>Topic of Quiz</h1>
+                <h1>Quiz in English y Español</h1>
                 <div className = "quiz-container">
                 <img className="quiz-image" src={quizImg} alt="Quiz Image" /> {}
                 
@@ -132,7 +150,7 @@ const Play = () => {
                     // this conditional statement is needed to ensure that quizData contains something before being used
 
                 <div className="question-container">
-                  <p>{translatedQuestion}</p>
+                  <p>{questionLanguageToggle ? quizData[currentQuizItem].question : translatedQuestion}</p>
                 </div>
                   )}
 
@@ -140,13 +158,13 @@ const Play = () => {
               {quizData.length > 0 && (
                 <ul>
                   <li className={selectedChoice === 'A' ? 'selected' : ''}
-                    onClick={() => handleAnswerClick('A')}>A: {translatedChoices[0]?.translatedText}</li>
+                    onClick={() => handleAnswerClick('A')}>A: {choiceLanguageToggle ? quizData[currentQuizItem].A : translatedChoices[0]?.translatedText}</li>
                   <li className={selectedChoice === 'B' ? 'selected' : ''}
-                    onClick={() => handleAnswerClick('B')}>B: {translatedChoices[1]?.translatedText}</li>
+                    onClick={() => handleAnswerClick('B')}>B: {choiceLanguageToggle ? quizData[currentQuizItem].B : translatedChoices[1]?.translatedText }</li>
                   <li className={selectedChoice === 'C' ? 'selected' : ''}
-                    onClick={() => handleAnswerClick('C')}>C: {translatedChoices[2]?.translatedText}</li>
+                    onClick={() => handleAnswerClick('C')}>C: {choiceLanguageToggle ? quizData[currentQuizItem].C : translatedChoices[2]?.translatedText }</li>
                   <li className={selectedChoice === 'D' ? 'selected' : ''}
-                    onClick={() => handleAnswerClick('D')}>D: {translatedChoices[3]?.translatedText}</li>
+                    onClick={() => handleAnswerClick('D')}>D: {choiceLanguageToggle ? quizData[currentQuizItem].D : translatedChoices[3]?.translatedText }</li>
                 </ul>
               )}
             </div>
@@ -155,13 +173,14 @@ const Play = () => {
 
                 <div className="submit-button-container">
                  {quizOver ? ( // checks if quiz is over in order to change buttons functionality
-                  <Link to="/play/results">See Results</Link> 
+                  <button className = "results-button" style={{}}><Link to="/play/results">See Results</Link>  </button>
                   ) : ( <button className="submit-button"onClick={nextQuestion} disabled={selectedChoice === null}>Next Question</button>
                )}
                 </div>
 
                 <div className = "language-toggle-button-container">
-                  <button className = "language-toggle-button">
+                  <div>
+                  <button className = "question-toggle-button" onClick={handleQuestionLanguageToggle}>
 
 
                     
@@ -171,9 +190,15 @@ const Play = () => {
                       Spanish Choices: translatedChoices[0]?.translatedText
                        */}
 
-                  </button>
-
+                  Change Question Language</button> 
+                  </div>
+                    <div>
+                  <button className = "choice-toggle-button" onClick={handleChoiceLanguageToggle}>
+                  Change Choice Language</button>
+                  </div>
                 </div>
+
+               
             </section>
         </div>
     </Fragment>
