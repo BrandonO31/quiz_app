@@ -30,6 +30,8 @@ const Play = () => {
 
     const [choiceLanguageToggle, setChoiceLanguageToggle] = useState(false);
 
+    let currentQuestionNumber = currentQuizItem + 1;
+
     
 
     const handleAnswerClick = (choiceIndex) => {
@@ -76,12 +78,22 @@ const Play = () => {
       
        
       
-    //Trivia questions
+   
 
     useEffect(() => {
      
-      const fetchedData = response.slice(0, 1);
-    
+      // const fetchedData = response.slice(0, 1);
+
+      const grabQuestions = (array) => {
+        for (let i = array.length -1; i > 0; i--) {
+          const j = Math.floor(Math.random()* (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+    const grabbedQuestions = grabQuestions(response);
+
+    const fetchedData = grabbedQuestions.slice(0,3);
     
       setQuizData(fetchedData);
     
@@ -140,7 +152,7 @@ const Play = () => {
                 <div style={{ textAlign: 'center' }}>
                     
                 </div>
-                <h1>Quiz in English y Español</h1>
+                <h1>Quiz in English y Español - Question # {currentQuestionNumber}</h1>
                 <div className = "quiz-container">
                 <img className="quiz-image" src={quizImg} alt="Quiz Image" /> {}
                 
