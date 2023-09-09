@@ -1,9 +1,10 @@
 import React , {Fragment , useState , useEffect} from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 import quizImg from '../../assets/img/backgroundflags.jpg';
 import { translateText } from './api';
 import response from './triviaQuestions';
+import QuizResults from './QuizResults';
 
 let score = 0;
 
@@ -12,8 +13,6 @@ console.log(response);
 const Play = () => {
 
     const [selectedChoice, setSelectedChoice] = useState(null);
-
-    // add # of tries 
 
     const [quizData, setQuizData] = useState([]);
 
@@ -25,10 +24,16 @@ const Play = () => {
 
     let [translatedChoices, setTranslatedChoices] = useState([]);
 
+    const [userAnswers, setUserAnswers] = useState([])
+
     const [questionLanguageToggle, setQuestionLanguageToggle] = useState(false);
-    //default lang: English/false
+    //English/ false (default) , Spanish/true
 
     const [choiceLanguageToggle, setChoiceLanguageToggle] = useState(false);
+
+    const navigate = useNavigate();
+
+
 
     let currentQuestionNumber = currentQuizItem + 1;
 
@@ -53,28 +58,24 @@ const Play = () => {
     }
 
     const nextQuestion = () => {
-        
-        if (selectedChoice !== null) {
-          let isCorrect = quizData[currentQuizItem].answer === selectedChoice;
-          if (isCorrect) {
-            ++score;
-            
-            
-          }
+      if (selectedChoice !== null) {
+        let isCorrect = quizData[currentQuizItem].answer === selectedChoice;
+        if (isCorrect) {
+          ++score;
         }
-      
-        let nextQuestionIndex = currentQuizItem + 1;
-        if (nextQuestionIndex < quizData.length) { // if there are questions remaining
-          setCurrentQuestion(++currentQuizItem);
-          setSelectedChoice(null); // needed to reset the selected choice
-        } else {
-          // code here will end the quiz by bringing up a results page
-          if (currentQuizItem + 1 >= quizData.length) {
-              setQuizOver(true);
-
-          }
-        }
-      };
+        setUserAnswers([...userAnswers, selectedChoice]);
+      }
+    
+      let nextQuestionIndex = currentQuizItem + 1;
+      if (nextQuestionIndex < quizData.length) {
+        setCurrentQuestion(++currentQuizItem);
+        setSelectedChoice(null);
+      }
+       else {  
+        // code here will end the quiz 
+        setQuizOver(true);
+      }
+    };
       
        
       
@@ -82,18 +83,18 @@ const Play = () => {
 
     useEffect(() => {
      
-      // const fetchedData = response.slice(0, 1);
+    //   const grabQuestions = (array) => {
+    //     for (let i = array.length -1; i > 0; i--) {
+    //       const j = Math.floor(Math.random()* (i + 1));
+    //       [array[i], array[j]] = [array[j], array[i]];
+    //     }
+    //     return array;
+    //   }
+    // const grabbedQuestions = grabQuestions(response);
 
-      const grabQuestions = (array) => {
-        for (let i = array.length -1; i > 0; i--) {
-          const j = Math.floor(Math.random()* (i + 1));
-          [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-      }
-    const grabbedQuestions = grabQuestions(response);
+    // const fetchedData = grabbedQuestions.slice(0,3);
 
-    const fetchedData = grabbedQuestions.slice(0,3);
+    const fetchedData = response.slice(0, 3);
     
       setQuizData(fetchedData);
     
@@ -136,6 +137,18 @@ const Play = () => {
       }
     }, []);
 
+// This handles props for results page, ensures that they are passed accurately
+    useEffect(() => {
+      if (quizOver && userAnswers.length >= quizData.length) {
+        navigate('/play/results', {
+          state: {
+            score: score,
+            userAnswers: userAnswers,
+            quizData: quizData,
+          },
+        });
+      }
+    }, [quizOver, userAnswers, quizData, navigate]);
 
 
     //Debugging
@@ -181,12 +194,27 @@ const Play = () => {
 
                 </div>
 
-                <div className="submit-button-container">
-                 {quizOver ? ( // checks if quiz is over in order to change buttons functionality
-                  <button className = "results-button" style={{}}><Link to="/play/results">See Results</Link>  </button>
-                  ) : ( <button className="submit-button"onClick={nextQuestion} disabled={selectedChoice === null}>Next Question</button>
-               )}
-                </div>
+                           
+            <div className="submit-button-container">
+              {quizOver ? (
+                <button className="results-button">
+                  <Link
+                    to="/play/results"
+                   >
+                    See Results
+                  </Link>
+                </button>
+              ) : (
+                <button
+                  className="submit-button"
+                  onClick={nextQuestion}
+                  disabled={selectedChoice === null}
+                >
+                  Next Question
+                </button>
+              )}
+            </div>
+
 
                 <div className = "language-toggle-button-container">
                   <div>
@@ -207,6 +235,8 @@ const Play = () => {
                   Change Answer Language</button>
                   </div>
                 </div>
+
+                
 
                
             </section>
