@@ -6,7 +6,7 @@ import { translateText } from './api';
 import response from './triviaQuestions';
 import QuizResults from './QuizResults';
 
-let score = 0;
+
 
 console.log(response);
 
@@ -19,6 +19,8 @@ const Play = () => {
     let [currentQuizItem , setCurrentQuestion] = useState(0);
 
     let [quizOver , setQuizOver] = useState(false);
+
+    const [score, setScore] = useState(0);
 
     let [translatedQuestion, setTranslatedQuestion] = useState(null);
 
@@ -57,11 +59,15 @@ const Play = () => {
       else setChoiceLanguageToggle(false);
     }
 
+    const resetScore = () => {
+      setScore(0);
+    }
+    
     const nextQuestion = () => {
       if (selectedChoice !== null) {
         let isCorrect = quizData[currentQuizItem].answer === selectedChoice;
         if (isCorrect) {
-          ++score;
+          setScore(score + 1);
         }
         setUserAnswers([...userAnswers, selectedChoice]);
       }
@@ -145,8 +151,10 @@ const Play = () => {
             score: score,
             userAnswers: userAnswers,
             quizData: quizData,
+            
           },
         });
+        resetScore();
       }
     }, [quizOver, userAnswers, quizData, navigate]);
 
@@ -249,5 +257,4 @@ const Play = () => {
 
    
 
-export { score };
 export default Play;

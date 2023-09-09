@@ -7,7 +7,7 @@ import { Link , useLocation} from 'react-router-dom';
 const QuizResults = () => {
 
   const location = useLocation();
-  const { score, userAnswers, quizData } = location.state;
+  const { score , userAnswers, quizData } = location.state;
 
   if (typeof quizData !== 'undefined') console.log("Results Page - Quiz Data: " , quizData);
   if (typeof userAnswers !== 'undefined')  console.log('Results Page - User Answers:', userAnswers);
@@ -21,6 +21,8 @@ const QuizResults = () => {
       <p>Your Answer: {quizItem[userAnswers[index]]}</p>
     </div>
   ));
+
+  // resetScore(score);
     return (
       <Fragment>
         <Helmet>
