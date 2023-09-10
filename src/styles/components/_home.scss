@@ -21,8 +21,22 @@
         height: 80%;
         width: 35%;
         border-radius: 25px;
+        overflow: scroll;
+
+       
     }
 
+
+    section::-webkit-scrollbar {
+        width: 8px; /* Width of the scrollbar */
+      }
+      section::-webkit-scrollbar-thumb {
+        background-color: gray; /* Color of the scrollbar thumb */
+        border-radius: 5px; /* Rounded corners for the thumb */
+      }
+     
+   
+      
     .book {
         font-size: 8rem;
         color: goldenrod;
@@ -67,18 +81,22 @@
         color: #fff;
         cursor: pointer;
         border-radius: 30px;
-        padding-top: 30px;
+      
         font-size: $sm;
+        
+        
 
         p {
             
             margin-bottom: 10px;
+            padding: 10px;
           }
         
           ul {
             list-style-type: disc;
-            padding-left: 20px;
+            
             margin-top: 10px;
+           
         
             li {
               margin-bottom: 10px;

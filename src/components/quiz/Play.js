@@ -100,7 +100,7 @@ const Play = () => {
 
     // const fetchedData = grabbedQuestions.slice(0,3);
 
-    const fetchedData = response.slice(0, 3);
+    const fetchedData = response.slice(0, 10);
     
       setQuizData(fetchedData);
     

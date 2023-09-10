@@ -5,7 +5,7 @@ body {
     height: 100vh;
     width: 200vh;
     margin: 0;
-  }
+ 
 
 #results-container {
     width: 90%;
@@ -45,5 +45,37 @@ body {
         }
       }
     }
+
+   
+  .results-overview {
+   
+    text-align: left; 
+    overflow-y: auto; 
+    max-height: 60vh; 
+
+    .result-item {
+      margin-bottom: 20px;
+      border: 1px solid #ccc; 
+      padding: 10px; 
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+      h2 {
+        text-align: center;
+      }
+
+      h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      p {
+        font-size: 16px;
+        color: #666;
+      }
+    }
   }
-  
+  }
+}
