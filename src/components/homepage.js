@@ -21,7 +21,7 @@ const Home = () =>  (
                 </div>
                 {/* Possible Login/Register buttons go here */}
                 <div className="desc-container">
-                    <p> Welcome to Quizas Quizzes - Your Bilingual Quiz Adventure! </p>
+                    <p> Welcome to Quizás Quizzes - Your Bilingual Quiz Adventure! </p>
 
                    <p> Expand your Trivia and Espanol knowledge with a quiz app designed to improve your general knowledge. </p>
                     <ul>

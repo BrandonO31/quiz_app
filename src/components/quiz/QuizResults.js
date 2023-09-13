@@ -13,14 +13,21 @@ const QuizResults = () => {
   if (typeof userAnswers !== 'undefined')  console.log('Results Page - User Answers:', userAnswers);
   
  // handles displaying each question and users corresponding answer
-  const resultsOverview = quizData.map((quizItem, index) => (
-    <div key={index} className="result-item">
+
+ const resultsOverview = quizData.map((quizItem, index) => {
+  console.log("This is for testing purposes: " , quizItem[quizItem.answer] , quizItem[userAnswers[index]]);
+  const isCorrect = quizItem[quizItem.answer] === quizItem[userAnswers[index]];
+  const answerClass = isCorrect ? 'correct-answer' : 'wrong-answer';
+
+  return (
+    <div key={index} className={`result-item ${answerClass}`}>
       <h3>Question {index + 1}:</h3>
       <p>{quizItem.question}</p>
       <p>Correct Answer: {quizItem[quizItem.answer]}</p>
-      <p>Your Answer: {quizItem[userAnswers[index]]}</p>
+      <p className={answerClass}>Your Answer: {quizItem[userAnswers[index]]}</p>
     </div>
-  ));
+  );
+});
 
   // resetScore(score);
     return (

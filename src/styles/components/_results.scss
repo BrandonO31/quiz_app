@@ -61,6 +61,14 @@ body {
       background-color: #fff;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
+      .correct-answer {
+        color: #39ce3e;
+      }
+      
+     .wrong-answer {
+        color: rgb(236, 88, 88);
+      }
+
       h2 {
         text-align: center;
       }

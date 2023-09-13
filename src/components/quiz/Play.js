@@ -173,7 +173,7 @@ const Play = () => {
                 <div style={{ textAlign: 'center' }}>
                     
                 </div>
-                <h1>Quiz in English y Español - Question # {currentQuestionNumber}</h1>
+                <h1>Quiz in English y Español - <span class="question-number">Question # {currentQuestionNumber}</span></h1>
                 <div className = "quiz-container">
                 <img className="quiz-image" src={quizImg} alt="Quiz Image" /> {}
                 
