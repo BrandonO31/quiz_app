@@ -29,7 +29,7 @@ const Play = () => {
     const [userAnswers, setUserAnswers] = useState([])
 
     const [questionLanguageToggle, setQuestionLanguageToggle] = useState(false);
-    //English/ false (default) , Spanish/true
+    //Spanish/ false (default) , English/true
 
     const [choiceLanguageToggle, setChoiceLanguageToggle] = useState(false);
 
@@ -76,6 +76,9 @@ const Play = () => {
       if (nextQuestionIndex < quizData.length) {
         setCurrentQuestion(++currentQuizItem);
         setSelectedChoice(null);
+        setChoiceLanguageToggle(false);
+        setQuestionLanguageToggle(false);
+
       }
        else {  
         // code here will end the quiz 
@@ -89,18 +92,18 @@ const Play = () => {
 
     useEffect(() => {
      
-    //   const grabQuestions = (array) => {
-    //     for (let i = array.length -1; i > 0; i--) {
-    //       const j = Math.floor(Math.random()* (i + 1));
-    //       [array[i], array[j]] = [array[j], array[i]];
-    //     }
-    //     return array;
-    //   }
-    // const grabbedQuestions = grabQuestions(response);
+      const grabQuestions = (array) => {
+        for (let i = array.length -1; i > 0; i--) {
+          const j = Math.floor(Math.random()* (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+    const grabbedQuestions = grabQuestions(response);
 
-    // const fetchedData = grabbedQuestions.slice(0,3);
+    const fetchedData = grabbedQuestions.slice(0,10);
 
-    const fetchedData = response.slice(0, 10);
+    
     
       setQuizData(fetchedData);
     
@@ -124,24 +127,34 @@ const Play = () => {
       if (fetchedData.length > 0) {
         let answerChoices = ['A', 'B', 'C', 'D']; 
         let translations = [];
-    
-        answerChoices.forEach((choice) => {
-          translateText(fetchedData[currentQuizItem][choice])
-            .then((trans_response) => {
-              if (trans_response.status === "success") {
-                const translatedText = trans_response.data.translatedText;
-                translations.push({ choice, translatedText });
-                if (translations.length === answerChoices.length) {
-                  setTranslatedChoices(translations);
-                }
-              }
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        });
-      }
-    }, []);
+        let translationPromises = []; // To store translation promises
+
+  answerChoices.forEach((choice) => {
+    translationPromises.push(
+      translateText(fetchedData[currentQuizItem][choice])
+        .then((trans_response) => {
+          if (trans_response.status === "success") {
+            const translatedText = trans_response.data.translatedText;
+            return { choice, translatedText };
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+    );
+  });
+
+  // Waits for asynch translations to complete, needed to make sure that they are pushed in the correct order
+  Promise.all(translationPromises)
+    .then((translations) => {
+      setTranslatedChoices(translations);
+      console.log("Translations: ", translations);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+    }, [currentQuizItem]);
 
 // This handles props for results page, ensures that they are passed accurately
     useEffect(() => {

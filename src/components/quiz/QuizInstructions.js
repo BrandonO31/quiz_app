@@ -18,7 +18,7 @@ const QuizInstructions = () => (
                     <li>Read the question carefully</li>
                     <li>Select the answer choice you believe is correct</li>
                     <li>If your choice is correct, then you will move on to the next question</li>
-                    <li>If your choice is incorrect, you will be able to guess again</li>
+                    <li>If your choice is incorrect, you will not be able to guess again</li>
                 </ul>
                 <div className="quiz-template-container">
                  <img className ="quiz-template"src={quizTemplateImg} alt="Quiz Template Image" />
