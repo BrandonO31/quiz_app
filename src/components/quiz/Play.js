@@ -92,18 +92,18 @@ const Play = () => {
 
     useEffect(() => {
      
-      const grabQuestions = (array) => {
-        for (let i = array.length -1; i > 0; i--) {
-          const j = Math.floor(Math.random()* (i + 1));
-          [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-      }
-    const grabbedQuestions = grabQuestions(response);
+    //   const grabQuestions = (array) => {
+    //     for (let i = array.length -1; i > 0; i--) {
+    //       const j = Math.floor(Math.random()* (i + 1));
+    //       [array[i], array[j]] = [array[j], array[i]];
+    //     }
+    //     return array;
+    //   }
+    // const grabbedQuestions = grabQuestions(response);
 
-    const fetchedData = grabbedQuestions.slice(0,10);
+    // const fetchedData = grabbedQuestions.slice(0,10);
 
-    // const fetchedData = response.slice(0, 10); // for testing purposes
+    const fetchedData = response.slice(0, 10); // for testing purposes
 
     
     
