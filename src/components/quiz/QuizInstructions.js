@@ -11,7 +11,7 @@ const QuizInstructions = () => (
         <div id="instructions">
             <section>
             
-            <h1>Please read the instructions before continuing</h1>
+            <h1>Please read the instructions before continuing / Por favor lea antes de continuar</h1>
 
             <div className="instructions-list">
                 <ul >

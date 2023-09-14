@@ -43,9 +43,9 @@ const trans_options = {
 };
 
 try {
-	const trans_response = await axios.request(trans_options);
-	console.log("trans_response: " , trans_response.data);
-  return trans_response.data;
+	// const trans_response = await axios.request(trans_options);
+	// console.log("trans_response: " , trans_response.data);
+  // return trans_response.data;
 } catch (trans_error) {
 	console.error(trans_error);
 }
